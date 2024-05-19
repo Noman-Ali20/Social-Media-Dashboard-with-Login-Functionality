@@ -1,167 +1,365 @@
-/* Reset some basic elements */
-body, html {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  /* ### Primary */
+  --Col-Lime-Green: hsl(163, 72%, 41%);
+  --Col-Bright-Red: hsl(356, 69%, 56%);
+
+  --Col-Facebook: hsl(208, 92%, 53%);
+  --Col-Twitter: hsl(203, 89%, 53%);
+  --Col-Instagram: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+  --Col-YouTube: hsl(348, 97%, 39%);
+  --Col-Linkedin: hsl(208, 92%, 53%);
+
+  /* #### Light Theme */
+  --Col-Toggle: hsl(230, 22%, 74%);
+  --Col-BG: hsl(0, 0%, 100%);
+  --Col-BG-Pattern: hsl(225, 100%, 98%);
+  --Col-Card-BG: hsl(227, 47%, 96%);
+  --Col-Card-BG-hover: hsl(227, 40%, 90%);
+  --Col-Text-1: hsl(228, 12%, 44%);
+  --Col-Text-2: hsl(230, 17%, 14%);
+  --Col-Toggle-hover: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+
+  --Font-size: 14px;
+  --Family: 'Inter', sans-serif;
+  /* - Weights: 400, 700 */
+}
+
+
+html.is_dark {
+  /* #### Dark Theme */
+  --Col-Toggle: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+  --Col-BG: hsl(230, 17%, 14%);
+  --Col-BG-Pattern: hsl(232, 19%, 15%);
+  --Col-Card-BG: hsl(228, 28%, 20%);
+  --Col-Card-BG-hover: hsl(228, 28%, 30%);
+  --Col-Text-1: hsl(228, 34%, 66%);
+  --Col-Text-2: hsl(0, 0%, 100%);
+}
+
+* {
+  box-sizing: border-box;
+  z-index: 1;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  transition: all 0.2s ease-in-out;
 }
 
-.video-background {
-  position: fixed;
+html,
+body {
+  font-size: var(--Font-size);
+  font-family: var(--Family);
+  font-weight: 700;
+  background: var(--Col-BG);
+  color: var(--Col-Text-1);
+}
+
+body {
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  right: 0;
+  height: 250px;
+  border-radius: 0 0 2rem 2rem;
+  background: var(--Col-BG-Pattern);
   z-index: -1;
 }
 
-#background-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: 800px;
-  height: 800px;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  
-  background-size: cover;
+a {
+  text-decoration: none;
+  color: var(--Col-Text-1);
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full viewport height */
-  padding: 1em;
-  z-index: 1;
+  width: min(80%, 1200px);
+  margin: auto;
 }
 
-.form {
+
+
+
+header {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-left: 5em;
-  padding-right: 5em;
-  padding-bottom: 0.4em;
-  background-color: #171717;
-  border-radius: 25px;
-  transition: 0.4s ease-in-out;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.main-header {
+  border-bottom: 1px solid #8885;
+}
+
+.main-header h1 {
+  color: var(--Col-Text-2);
+  font-size: 1.8rem;
+  margin: 3rem 0 0.3rem 0;
+}
+
+.main-header p {
+  margin: 0rem 0 2rem 0;
+
+}
+
+.side-header {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0rem 0 2rem 0;
+
+}
+
+.overview-container,
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+
+.overview-heading {
+  margin: 3.5rem 0 2rem 0;
+  font-size: 1.8rem;
+  color: var(--Col-Text-2);
 }
 
 .card {
-  background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
-  border-radius: 20px;
-  transition: all 0.3s;
-}
+  padding: 2rem;
+  background: var(--Col-Card-BG);
+  width: min(320px, 100%);
+  border-radius: 0.3rem;
+  transition: all 0.01s ease-in-out;
 
-.card2 {
-  border-radius: 0;
-  transition: all 0.2s;
-}
-
-.card2:hover {
-  transform: scale(0.98);
-  border-radius: 20px;
 }
 
 .card:hover {
-  box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
+  background: var(--Col-Card-BG-hover);
 }
 
-#heading {
-  text-align: center;
-  margin: 2em;
-  /* color: rgb(255, 255, 255); */
-  color: #00ff75;
-  font-size: 1.2em;
-}
-
-.field {
+.card_main {
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card_main .card_top {
+  align-self: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
   align-items: center;
+}
+
+.card_main .card_middle {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 0.5em;
-  border-radius: 25px;
-  padding: 0.6em;
-  border: none;
-  outline: none;
-  color: white;
-  background-color: #171717;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  align-items: center;
 }
 
-.input-icon {
-  height: 1.3em;
-  width: 1.3em;
-  fill: white;
+.card_main .card_bottom {
+  align-self: center;
+  display: flex;
+  gap: 0.2rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.input-field {
-  background: none;
-  border: none;
-  outline: none;
-  width: 100%;
-  color: #d3d3d3;
+
+.card_main .card_middle h1.numbers_of_followers {
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--Col-Text-2);
 }
 
-.form .btn {
+.card_main .card_middle p {
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.change {
+  color: var(--Col-Text-2);
+}
+
+.change.up {
+  color: var(--Col-Lime-Green);
+}
+
+.change.down {
+  color: var(--Col-Bright-Red);
+}
+
+.fb {
+  border-top: 0.4rem solid var(--Col-Facebook);
+}
+
+.insta {
+  position: relative;
+}
+
+.insta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.4rem;
+  border-radius: 0.3rem 0.3rem 0 0;
+  background: var(--Col-Instagram);
+}
+
+.twitter {
+  border-top: 0.4rem solid var(--Col-Twitter);
+}
+
+.yt {
+  border-top: 0.4rem solid var(--Col-YouTube);
+}
+.ld{
+  border-top: 0.4rem solid var(--Col-Linkedin);
+}
+
+.card_sec {
   display: flex;
   justify-content: center;
+  align-items: space-between;
+  min-height: 9.5rem;
+}
+
+.card_sec .wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card_sec .wrapper.left {
+  align-items: flex-start;
+}
+
+.card_sec .wrapper.right {
+  align-items: flex-end;
+}
+
+.card_sec h1.count {
+  font-size: 2.7rem;
+  color: var(--Col-Text-2);
+  line-height: 1;
+}
+
+.card_sec div {
+  display: flex;
   flex-direction: row;
-  margin-top: 2.5em;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
 }
 
-.button1 {
-  padding: 0.5em;
-  padding-left: 1.1em;
-  padding-right: 1.1em;
-  border-radius: 5px;
-  margin-right: 0.5em;
-  border: none;
-  outline: none;
-  transition: 0.4s ease-in-out;
-  background-color: #252525;
-  color: white;
+
+@media(min-width:756px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .main-header {
+    border-bottom: none;
+  }
+
+  .side-header {
+    gap: 1rem;
+    align-self: flex-end;
+  }
+  .card{
+    width: min(280px, 100%);
+  }
 }
 
-.button1:hover {
-  background-color: black;
-  color: white;
+
+
+
+
+
+
+
+
+/* toggle css; */
+.switch {
+  position: relative;
+  display: inline-block;
 }
 
-.button2 {
-  padding: 0.5em;
-  padding-left: 2.3em;
-  padding-right: 2.3em;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  transition: 0.4s ease-in-out;
-  background-color: #252525;
-  color: white;
+.switch:hover+div {
+  color: var(--Col-Text-2);
 }
 
-.button2:hover {
-  background-color: black;
-  color: white;
+.switch-input {
+  display: none;
 }
 
-.button3 {
-  margin-bottom: 3em;
-  padding: 0.5em;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  transition: 0.4s ease-in-out;
-  background-color: #252525;
-  color: white;
+.switch-label {
+  display: block;
+  width: 50px;
+  height: 25px;
+  text-indent: -150%;
+  clip: rect(0 0 0 0);
+  color: transparent;
+  user-select: none;
 }
 
-.button3:hover {
-  background-color: red;
-  color: white;
+.switch-label::before,
+.switch-label::after {
+  content: "";
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+
+.switch-label::before {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--Col-Toggle);
+  border-radius: 9999em;
+  transition: all 0.25s ease;
+}
+
+.switch-label::after {
+  top: 10%;
+  left: 5%;
+  right: 55%;
+  bottom: 10%;
+  border-radius: 10000px;
+  background: var(--Col-BG);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+  transition: all 0.25s ease;
+}
+
+.switch-input:checked+.switch-label::before {
+  /* active color */
+  background: var(--Col-Toggle);
+}
+
+.switch-input:checked+.switch-label:hover::before {
+  background: var(--Col-Toggle-hover);
+}
+
+.switch-input:checked+.switch-label::after {
+  /* active switch position */
+  left: 55%;
+  right: 5%;
 }
